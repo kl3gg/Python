@@ -15,8 +15,8 @@ from pathlib import Path
 
 
 # File paths 
-xlsx_users_path = Path("data/users.xlsx")  #List over usernames
-xlsx_emails_path = Path("data/emails.xlsx") #Attendance list with usernames
+xlsx_users= Path("data/users.xlsx")  #List over usernames
+xlsx_emails = Path("data/emails.xlsx") #Attendance list with usernames
 output_path = Path("output/missing_usernames.xlsx")
 
 def to_username(series: pd.Series) -> pd.Series:
@@ -25,8 +25,8 @@ def to_username(series: pd.Series) -> pd.Series:
     return s
 
 # Load data (no header, specific columns only)
-df_users = pd.read_excel(xlsx_users_path, header=None, usecols=[0], engine="openpyxl")
-df_emails = pd.read_excel(xlsx_emails_path, header=None, usecols=[1], engine="openpyxl")
+df_users = pd.read_excel(xlsx_users, header=None, usecols=[0], engine="openpyxl")
+df_emails = pd.read_excel(xlsx_emails, header=None, usecols=[1], engine="openpyxl")
 
 # Normalize usernames
 users = to_username(df_users.iloc[:, 0]).dropna()
